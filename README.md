@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android)
+
 # Android library for Printer Thermal ESC/POS Command
 
 Usefull library to help Android developers to print with bluetooth thermal printers ESC/POS.
@@ -15,21 +17,31 @@ Tested with [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/
 
 ## Installation
 
-### With git clone :
-To install this library, just clone it into the `/app/src/main/java` directory.
+**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.0.1) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
+
 ```
-cd [YOUR_PROJECT_DIRECTORY]/app/src/main/java
-git clone https://github.com/DantSu/PrinterThermal-ESCPOS-Android.git .
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
-### With zip file :
+**Step 2.** Add the dependency in `/app/build.gradle` :
 
-You can also download the zip file and unzip the `lib` directory in `[YOUR_PROJECT_DIRECTORY]/app/src/main/java`.
-
+```
+dependencies {
+    ...
+    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.0.1'
+}
+```
 
 ## Bluetooth permission
 
-Be sure to have `Manifest.permission.BLUETOOTH` permission for your app. Like this :
+Be sure to have `<uses-permission android:name="android.permission.BLUETOOTH" />` in your `AndroidMenifest.xml`.
+
+Also, you have to check the bluetooth permission in your app like this :
 
 ```java
 if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
@@ -69,7 +81,7 @@ printer
         "[L]Raymond DUPONT\n" +
         "[L]5 rue des girafes\n" +
         "[L]31547 PERPETES\n" +
-        "[L]Tel : 0645789663\n" +
+        "[L]Tel : +33801201456\n" +
         "[L]\n" +
         "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n"
     )
