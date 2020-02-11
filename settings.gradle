@@ -1,0 +1,2 @@
+include ':app', ':printerthermal_escpos_bluetooth'
+rootProject.name='PrinterThermal'
