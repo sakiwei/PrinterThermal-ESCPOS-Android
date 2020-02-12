@@ -200,7 +200,7 @@ Get a list of bluetooth printers.
 - **param** `BluetoothPrinterSocketConnexion printer` : Instance of a connected bluetooth printer
 - **param** `int printerDpi` : DPI of the connected printer
 - **param** `float printingWidthMM` : Printing width in millimeters
-- **param** `int nbrCharactersPerLine` : The maximum number of characters that can be printed on a line.
+- **param** `int nbrCharactersPerLine` : The maximum number of medium sized characters that can be printed on a line.
 
 #### Method : `disconnectPrinter()`
 Close the Bluetooth connexion with the printer.
