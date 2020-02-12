@@ -184,7 +184,7 @@ Prints a UPC-E barcode with a height of 25 millimeters.
 
 ## Class list
 
-### Class : `lib.printer.thermal.bluetooth.BluetoothPrinters`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinters`
 
 #### **Static** Method : `selectFirstPairedBluetoothPrinter()`
 Easy way to get the first bluetooth printer paired / connected.
@@ -194,7 +194,7 @@ Easy way to get the first bluetooth printer paired / connected.
 Get a list of bluetooth printers.
 - **return** `BluetoothPrinterSocketConnexion[]`
 
-### Class : `lib.printer.thermal.Printer`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.Printer`
 
 #### Constructor : `Printer(BluetoothPrinterSocketConnexion printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine)`
 - **param** `BluetoothPrinterSocketConnexion printer` : Instance of a connected bluetooth printer
@@ -241,7 +241,7 @@ Convert Bitmap object to ESC/POS image.
 - **param** `Bitmap bitmap` : Instance of Bitmap
 - **return** `byte[]` : Bytes contain the image in ESC/POS command
 
-### Class : `lib.printer.thermal.textparser.PrinterTextParserImg`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserImg`
 
 #### **Static** Method : `bitmapToHexadecimalString(Printer printer, Drawable drawable)`
 Convert Drawable instance to a hexadecimal string of the image data.
