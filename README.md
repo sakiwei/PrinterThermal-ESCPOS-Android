@@ -10,9 +10,8 @@ Usefull library to help Android developers to print with bluetooth thermal print
 Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 
-## Printer tested
+## Tested Printers
 
-Tested with:
 1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
 2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
 
