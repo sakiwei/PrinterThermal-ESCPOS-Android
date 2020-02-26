@@ -15,9 +15,9 @@ Usefull library to help Android developers to print with bluetooth thermal print
 - [Code example](#code-example)
 - [Formatted text : syntax guide](#formatted-text--syntax-guide)
 - [Class list](#class-list)
-  - [BluetoothPrinters](#class--comdantsuprinterthermal-escpos-bluetoothbluetoothbluetoothprinters)
-  - [Printer](#class--comdantsuprinterthermal-escpos-bluetoothprinter)
-  - [PrinterTextParserImg](#class--comdantsuprinterthermal-escpos-bluetoothtextparserprintertextparserimg)
+  - [BluetoothPrinters](#user-content-class--comdantsuprinterthermal_escpos_bluetoothbluetoothbluetoothprinters)
+  - [Printer](#user-content-class--comdantsuprinterthermal_escpos_bluetoothprinter)
+  - [PrinterTextParserImg](#user-content-class--comdantsuprinterthermal_escpos_bluetoothtextparserprintertextparserimg)
 - [Contributing](#contributing)
 
 
