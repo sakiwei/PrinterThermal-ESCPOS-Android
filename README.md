@@ -1,8 +1,24 @@
 [![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Android library for Printer Thermal ESC/POS Command
 
 Usefull library to help Android developers to print with bluetooth thermal printers ESC/POS.
+
+
+## Table of contents
+
+- [Android version](#android-version)
+- [Tested printers](#tested-printers)
+- [Installation](#installation)
+- [Bluetooth permission](#bluetooth-permission)
+- [Code example](#code-example)
+- [Formatted text : syntax guide](#formatted-text--syntax-guide)
+- [Class list](#class-list)
+  - [BluetoothPrinters](#class--comdantsuprinterthermal-escpos-bluetoothbluetoothbluetoothprinters)
+  - [Printer](#class--comdantsuprinterthermal-escpos-bluetoothprinter)
+  - [PrinterTextParserImg](#class--comdantsuprinterthermal-escpos-bluetoothtextparserprintertextparserimg)
+- [Contributing](#contributing)
 
 
 ## Android version
@@ -10,7 +26,7 @@ Usefull library to help Android developers to print with bluetooth thermal print
 Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 
-## Tested Printers
+## Tested printers
 
 1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
 2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
@@ -94,7 +110,7 @@ Below a picture of the receipt printed with the code above :
 ![Example of a printed receipt](http://www.developpeur-web.dantsu.com/files/librairie/receipt-thermal-printer.png)
 
 
-## Formatted Text : Syntax guide
+## Formatted text : syntax guide
 
 ### New line
 
