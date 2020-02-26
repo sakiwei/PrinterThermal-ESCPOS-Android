@@ -15,12 +15,6 @@ Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
 2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
 
-## Contributing
-
-Please fork this repository and contribute back using pull requests.
-
-Any contributions, large or small, major features, bug fixes, are welcomed and appreciated but will be thoroughly reviewed
-
 
 ## Installation
 
@@ -277,4 +271,11 @@ Convert byte array to a hexadecimal string of the image data.
 Convert hexadecimal string of the image data to bytes ESC/POS command.
 - **param** `String hexString` : Hexadecimal string of the image data.
 - **return** `byte[]` : Bytes contain the image in ESC/POS command.
+
+
+## Contributing
+
+Please fork this repository and contribute back using pull requests.
+
+Any contributions, large or small, major features, bug fixes, are welcomed and appreciated but will be thoroughly reviewed
 
