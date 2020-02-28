@@ -33,4 +33,8 @@ public class PrinterCommands {
     public static final int BARCODE_EAN13 = 2;
     public static final int BARCODE_EAN8 = 3;
     public static final int BARCODE_ITF = 5;
+
+
+    public static final int QRCODE_1 = 1;
+    public static final int QRCODE_2 = 2;
 }

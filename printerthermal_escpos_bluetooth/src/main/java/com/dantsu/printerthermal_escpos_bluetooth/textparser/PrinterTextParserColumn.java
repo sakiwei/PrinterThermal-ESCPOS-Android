@@ -57,6 +57,7 @@ public class PrinterTextParserColumn {
                 switch (textParserTag.getTagName()) {
                     case PrinterTextParser.TAGS_IMAGE:
                     case PrinterTextParser.TAGS_BARCODE:
+                    case PrinterTextParser.TAGS_QRCODE:
                         String closeTag = "</" + textParserTag.getTagName() + ">";
                         int closeTagPosition = trimmedTextColumn.length() - closeTag.length();
             
@@ -67,6 +68,9 @@ public class PrinterTextParserColumn {
                                     break;
                                 case PrinterTextParser.TAGS_BARCODE:
                                     this.appendBarcode(textAlign, textParserTag.getAttributes(), trimmedTextColumn.substring(openTagEndIndex, closeTagPosition));
+                                    break;
+                                case PrinterTextParser.TAGS_QRCODE:
+                                    this.appendQRCode(textAlign, textParserTag.getAttributes(), trimmedTextColumn.substring(openTagEndIndex, closeTagPosition));
                                     break;
                             }
                             isImgOrBarcodeLine = true;
@@ -245,9 +249,17 @@ public class PrinterTextParserColumn {
     private PrinterTextParserColumn prependBarcode(String textAlign, Hashtable<String,String> barcodeAttributes, String code) {
         return this.prependElement(new PrinterTextParserBarcode(this, textAlign, barcodeAttributes, code));
     }
-    
+
     private PrinterTextParserColumn appendBarcode(String textAlign, Hashtable<String,String> barcodeAttributes, String code) {
         return this.appendElement(new PrinterTextParserBarcode(this, textAlign, barcodeAttributes, code));
+    }
+
+    private PrinterTextParserColumn prependQRCode(String textAlign, Hashtable<String,String> qrCodeAttributes, String data) {
+        return this.prependElement(new PrinterTextParserBarcode(this, textAlign, qrCodeAttributes, data));
+    }
+
+    private PrinterTextParserColumn appendQRCode(String textAlign, Hashtable<String,String> qrCodeAttributes, String data) {
+        return this.appendElement(new PrinterTextParserQRCode(this, textAlign, qrCodeAttributes, data));
     }
     
     private PrinterTextParserColumn prependElement(PrinterTextParserElement element) {

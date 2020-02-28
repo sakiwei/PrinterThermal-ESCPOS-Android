@@ -14,7 +14,8 @@ public class PrinterTextParser {
     
     public static final String TAGS_IMAGE = "img";
     public static final String TAGS_BARCODE = "barcode";
-    
+    public static final String TAGS_QRCODE = "qrcode";
+
     public static final String ATTR_BARCODE_HEIGHT = "height";
     public static final String ATTR_BARCODE_TYPE = "type";
     public static final String ATTR_BARCODE_TYPE_EAN8 = "ean8";
@@ -33,7 +34,11 @@ public class PrinterTextParser {
     public static final String ATTR_FORMAT_TEXT_SIZE_WIDE = "wide";
     public static final String ATTR_FORMAT_TEXT_SIZE_SMALL = "small";
     public static final String ATTR_FORMAT_TEXT_SIZE_MEDIUM = "medium";
-    
+
+    public static final String ATTR_QRCODE_SIZE = "size";
+    public static final String ATTR_QRCODE_TYPE = "type";
+    public static final String ATTR_QRCODE_TYPE_1 = "1";
+    public static final String ATTR_QRCODE_TYPE_2 = "2";
     
     private static String regexAlignTags;
     public static String getRegexAlignTags() {

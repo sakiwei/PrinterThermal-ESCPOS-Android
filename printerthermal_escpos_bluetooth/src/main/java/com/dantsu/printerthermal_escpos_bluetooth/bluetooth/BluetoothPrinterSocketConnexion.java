@@ -2,6 +2,7 @@ package com.dantsu.printerthermal_escpos_bluetooth.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -394,7 +395,54 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
         }
         return this;
     }
-    
+
+
+
+    /**
+     * Print a QR code with the connected printer.
+     *
+     * @param qrCodeType Set the barcode type. Use PrinterCommands.QRCODE_... constants
+     * @param text String that contains QR code data
+     * @param size dot size of QR code pixel
+     * @return Fluent interface
+     */
+    public BluetoothPrinterSocketConnexion printQRCode(int qrCodeType, String text, int size) {
+        if (!this.isOpenedStream()) {
+            return this;
+        }
+
+        if(size < 1) {
+            size = 1;
+        } else if(size > 16) {
+            size = 16;
+        }
+
+
+        try {
+            byte[] textBytes = text.getBytes("ISO-8859-1");
+            int
+                    commandLength = textBytes.length + 3,
+                    pH = (int)Math.floor(commandLength / 256),
+                    pL = commandLength % 256;
+
+            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x41, (byte)qrCodeType, 0x00});
+            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x43, (byte)size});
+
+            byte[] qrCodeCommand = new byte[commandLength + 5];
+            System.arraycopy(new byte[]{0x1d, 0x28, 0x6b, (byte)pL, (byte)pH, 0x31, 0x50, 0x30}, 0, qrCodeCommand, 0, 8);
+            System.arraycopy(textBytes, 0, qrCodeCommand, 8, textBytes.length);
+            this.outputStream.write(qrCodeCommand);
+
+            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x51, 0x30});
+
+            Thread.sleep(PrinterCommands.TIME_BETWEEN_TWO_PRINT * 2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
     /**
      * Forces the transition to a new line with the connected printer.
      *
