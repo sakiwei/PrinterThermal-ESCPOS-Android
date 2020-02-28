@@ -4,6 +4,7 @@ import java.util.Hashtable;
 
 import com.dantsu.printerthermal_escpos_bluetooth.Printer;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
 
 public class PrinterTextParserBarcode implements PrinterTextParserElement {
     
@@ -54,26 +55,28 @@ public class PrinterTextParserBarcode implements PrinterTextParserElement {
         
         this.code = code;
     }
-    
-    public String getCode() {
-        return this.code;
-    }
-    
-    public int getBarcodeType() {
-        return this.barcodeType;
-    }
-    
-    public int getHeight() {
-        return this.height;
-    }
-    
+
+    /**
+     * Get the barcode width in char length.
+     *
+     * @return int
+     */
     @Override
     public int length() {
         return this.length;
     }
-    
+
+    /**
+     * Print barcode
+     *
+     * @param printerSocket Bluetooth printer socket connexion
+     * @return this Fluent method
+     */
     @Override
-    public byte[] getAlign() {
-        return this.align;
+    public PrinterTextParserBarcode print(BluetoothPrinterSocketConnexion printerSocket) {
+        printerSocket
+                .setAlign(this.align)
+                .printBarcode(this.barcodeType, this.code, this.height);
+        return this;
     }
 }

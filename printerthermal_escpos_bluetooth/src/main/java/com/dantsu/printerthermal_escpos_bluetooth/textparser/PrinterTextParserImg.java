@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 
 import com.dantsu.printerthermal_escpos_bluetooth.Printer;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
 
 
 public class PrinterTextParserImg implements PrinterTextParserElement {
@@ -150,14 +151,16 @@ public class PrinterTextParserImg implements PrinterTextParserElement {
     public int length() {
         return this.length;
     }
-    
+
     /**
-     * Get the printer command alignment.
+     * Print image
      *
-     * @return A printer command alignment
+     * @param printerSocket Bluetooth printer socket connexion
+     * @return this Fluent method
      */
     @Override
-    public byte[] getAlign() {
-        return PrinterCommands.TEXT_ALIGN_LEFT;
+    public PrinterTextParserImg print(BluetoothPrinterSocketConnexion printerSocket) {
+        printerSocket.printImage(this.image);
+        return this;
     }
 }

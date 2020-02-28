@@ -3,6 +3,7 @@ package com.dantsu.printerthermal_escpos_bluetooth.textparser;
 import java.util.Arrays;
 
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
 
 public class PrinterTextParserString implements PrinterTextParserElement {
     private String text;
@@ -16,24 +17,7 @@ public class PrinterTextParserString implements PrinterTextParserElement {
         this.textBold = textBold;
         this.textUnderline = textUnderline;
     }
-    
-    public String getText() {
-        return text;
-    }
-    
-    public byte[] getTextSize() {
-        return textSize;
-    }
-    
-    public byte[] getTextBold() {
-        return textBold;
-    }
-    
-    public byte[] getTextUnderline() {
-        return textUnderline;
-    }
-    
-    
+
     @Override
     public int length() {
         int coef = 1;
@@ -44,8 +28,16 @@ public class PrinterTextParserString implements PrinterTextParserElement {
         
         return this.text.length() * coef;
     }
+
+    /**
+     * Print text
+     *
+     * @param printerSocket Bluetooth printer socket connexion
+     * @return this Fluent method
+     */
     @Override
-    public byte[] getAlign() {
-        return PrinterCommands.TEXT_ALIGN_LEFT;
+    public PrinterTextParserString print(BluetoothPrinterSocketConnexion printerSocket) {
+        printerSocket.printText(this.text, this.textSize, this.textBold, this.textUnderline);
+        return this;
     }
 }

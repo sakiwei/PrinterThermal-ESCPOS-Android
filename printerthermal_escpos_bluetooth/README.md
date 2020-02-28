@@ -1,6 +1,24 @@
+[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # Android library for Printer Thermal ESC/POS Command
 
 Usefull library to help Android developers to print with bluetooth thermal printers ESC/POS.
+
+
+## Table of contents
+
+- [Android version](#android-version)
+- [Tested printers](#tested-printers)
+- [Installation](#installation)
+- [Bluetooth permission](#bluetooth-permission)
+- [Code example](#code-example)
+- [Formatted text : syntax guide](#formatted-text--syntax-guide)
+- [Class list](#class-list)
+  - [BluetoothPrinters](#user-content-class--comdantsuprinterthermal_escpos_bluetoothbluetoothbluetoothprinters)
+  - [Printer](#user-content-class--comdantsuprinterthermal_escpos_bluetoothprinter)
+  - [PrinterTextParserImg](#user-content-class--comdantsuprinterthermal_escpos_bluetoothtextparserprintertextparserimg)
+- [Contributing](#contributing)
 
 
 ## Android version
@@ -8,28 +26,39 @@ Usefull library to help Android developers to print with bluetooth thermal print
 Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 
-## Printer tested
+## Tested printers
 
-Tested with [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
+1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
+2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
 
 
 ## Installation
 
-### With git clone :
-To install this library, just clone it into the `/app/src/main/java` directory.
+**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.0.1) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
+
 ```
-cd [YOUR_PROJECT_DIRECTORY]/app/src/main/java
-git clone https://github.com/DantSu/PrinterThermal-ESCPOS-Android.git .
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
-### With zip file :
+**Step 2.** Add the dependency in `/app/build.gradle` :
 
-You can also download the zip file and unzip the `lib` directory in `[YOUR_PROJECT_DIRECTORY]/app/src/main/java`.
-
+```
+dependencies {
+    ...
+    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.0.1'
+}
+```
 
 ## Bluetooth permission
 
-Be sure to have `Manifest.permission.BLUETOOTH` permission for your app. Like this :
+Be sure to have `<uses-permission android:name="android.permission.BLUETOOTH" />` in your `AndroidMenifest.xml`.
+
+Also, you have to check the bluetooth permission in your app like this :
 
 ```java
 if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
@@ -69,7 +98,7 @@ printer
         "[L]Raymond DUPONT\n" +
         "[L]5 rue des girafes\n" +
         "[L]31547 PERPETES\n" +
-        "[L]Tel : 0645789663\n" +
+        "[L]Tel : +33801201456\n" +
         "[L]\n" +
         "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n"
     )
@@ -81,7 +110,7 @@ Below a picture of the receipt printed with the code above :
 ![Example of a printed receipt](http://www.developpeur-web.dantsu.com/files/librairie/receipt-thermal-printer.png)
 
 
-## Formatted Text : Syntax guide
+## Formatted text : syntax guide
 
 ### New line
 
@@ -172,7 +201,7 @@ Prints a UPC-E barcode with a height of 25 millimeters.
 
 ## Class list
 
-### Class : `lib.printer.thermal.bluetooth.BluetoothPrinters`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinters`
 
 #### **Static** Method : `selectFirstPairedBluetoothPrinter()`
 Easy way to get the first bluetooth printer paired / connected.
@@ -182,13 +211,13 @@ Easy way to get the first bluetooth printer paired / connected.
 Get a list of bluetooth printers.
 - **return** `BluetoothPrinterSocketConnexion[]`
 
-### Class : `lib.printer.thermal.Printer`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.Printer`
 
 #### Constructor : `Printer(BluetoothPrinterSocketConnexion printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine)`
 - **param** `BluetoothPrinterSocketConnexion printer` : Instance of a connected bluetooth printer
 - **param** `int printerDpi` : DPI of the connected printer
 - **param** `float printingWidthMM` : Printing width in millimeters
-- **param** `int nbrCharactersPerLine` : The maximum number of characters that can be printed on a line.
+- **param** `int nbrCharactersPerLine` : The maximum number of medium sized characters that can be printed on a line.
 
 #### Method : `disconnectPrinter()`
 Close the Bluetooth connexion with the printer.
@@ -229,7 +258,7 @@ Convert Bitmap object to ESC/POS image.
 - **param** `Bitmap bitmap` : Instance of Bitmap
 - **return** `byte[]` : Bytes contain the image in ESC/POS command
 
-### Class : `lib.printer.thermal.textparser.PrinterTextParserImg`
+### Class : `com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserImg`
 
 #### **Static** Method : `bitmapToHexadecimalString(Printer printer, Drawable drawable)`
 Convert Drawable instance to a hexadecimal string of the image data.
@@ -259,4 +288,10 @@ Convert hexadecimal string of the image data to bytes ESC/POS command.
 - **param** `String hexString` : Hexadecimal string of the image data.
 - **return** `byte[]` : Bytes contain the image in ESC/POS command.
 
+
+## Contributing
+
+Please fork this repository and contribute back using pull requests.
+
+Any contributions, large or small, major features, bug fixes, are welcomed and appreciated but will be thoroughly reviewed
 

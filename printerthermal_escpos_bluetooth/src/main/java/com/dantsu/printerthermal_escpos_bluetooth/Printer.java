@@ -137,18 +137,7 @@ public class Printer {
             for (PrinterTextParserColumn column : columns) {
                 PrinterTextParserElement[] elements = column.getElements();
                 for (PrinterTextParserElement element : elements) {
-                    if(element instanceof PrinterTextParserString) {
-                        PrinterTextParserString string = (PrinterTextParserString) element;
-                        this.bluetoothPrinter.printText(string.getText(), string.getTextSize(), string.getTextBold(), string.getTextUnderline());
-                    } else if(element instanceof PrinterTextParserImg) {
-                        PrinterTextParserImg img = (PrinterTextParserImg) element;
-                        this.bluetoothPrinter.printImage(img.getImage());
-                    } else if(element instanceof PrinterTextParserBarcode) {
-                        PrinterTextParserBarcode barcode = (PrinterTextParserBarcode) element;
-                        this.bluetoothPrinter
-                            .setAlign(barcode.getAlign())
-                            .printBarcode(barcode.getBarcodeType(), barcode.getCode(), barcode.getHeight());
-                    }
+                    element.print(this.bluetoothPrinter);
                 }
             }
             this.bluetoothPrinter.newLine();
