@@ -35,6 +35,6 @@ public class PrinterCommands {
     public static final int BARCODE_ITF = 5;
 
 
-    public static final int QRCODE_1 = 1;
-    public static final int QRCODE_2 = 2;
+    public static final int QRCODE_1 = 49;
+    public static final int QRCODE_2 = 50;
 }
