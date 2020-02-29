@@ -11,12 +11,12 @@ public class BluetoothPrinters extends BluetoothDevices {
      *
      * @return a BluetoothPrinterSocketConnexion instance
      */
-    public static BluetoothPrinterSocketConnexion selectFirstPairedBluetoothPrinter() {
+    public static BluetoothPrinterSocketConnection selectFirstPairedBluetoothPrinter() {
         BluetoothPrinters printers = new BluetoothPrinters();
-        BluetoothPrinterSocketConnexion[] bluetoothPrinters = printers.getList();
+        BluetoothPrinterSocketConnection[] bluetoothPrinters = printers.getList();
         
         if (bluetoothPrinters != null && bluetoothPrinters.length > 0) {
-            for (BluetoothPrinterSocketConnexion printer : bluetoothPrinters) {
+            for (BluetoothPrinterSocketConnection printer : bluetoothPrinters) {
                 if (printer.connect()) {
                     return printer;
                 }
@@ -31,22 +31,22 @@ public class BluetoothPrinters extends BluetoothDevices {
      *
      * @return an array of BluetoothPrinterSocketConnexion
      */
-    public BluetoothPrinterSocketConnexion[] getList() {
-        BluetoothDeviceSocketConnexion[] bluetoothDevicesList = super.getList();
+    public BluetoothPrinterSocketConnection[] getList() {
+        BluetoothDeviceSocketConnection[] bluetoothDevicesList = super.getList();
     
         if(bluetoothDevicesList == null) {
             return null;
         }
     
         int i = 0, j = 0;
-        BluetoothPrinterSocketConnexion[] bluetoothPrintersTmp = new BluetoothPrinterSocketConnexion[bluetoothDevicesList.length];
-        for (BluetoothDeviceSocketConnexion device : bluetoothDevicesList) {
+        BluetoothPrinterSocketConnection[] bluetoothPrintersTmp = new BluetoothPrinterSocketConnection[bluetoothDevicesList.length];
+        for (BluetoothDeviceSocketConnection device : bluetoothDevicesList) {
             if (device.getDevice().getBluetoothClass().getMajorDeviceClass() == BluetoothClass.Device.Major.IMAGING && device.getDevice().getBluetoothClass().getDeviceClass() == 1664) {
-                bluetoothPrintersTmp[i++] = new BluetoothPrinterSocketConnexion(device.getDevice());
+                bluetoothPrintersTmp[i++] = new BluetoothPrinterSocketConnection(device.getDevice());
             }
         }
-        BluetoothPrinterSocketConnexion[] bluetoothPrinters = new BluetoothPrinterSocketConnexion[i];
-        for (BluetoothPrinterSocketConnexion device : bluetoothPrintersTmp) {
+        BluetoothPrinterSocketConnection[] bluetoothPrinters = new BluetoothPrinterSocketConnection[i];
+        for (BluetoothPrinterSocketConnection device : bluetoothPrintersTmp) {
             if (device != null) {
                 bluetoothPrinters[j++] = device;
             }

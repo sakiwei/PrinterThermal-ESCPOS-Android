@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothSocket;
 
 import java.io.IOException;
 
-public class BluetoothDeviceSocketConnexion {
+public class BluetoothDeviceSocketConnection {
     
     protected BluetoothDevice device;
     protected BluetoothSocket bluetoothSocket = null;
@@ -15,7 +15,7 @@ public class BluetoothDeviceSocketConnexion {
      *
      * @param device an instance of android.bluetooth.BluetoothDevice
      */
-    public BluetoothDeviceSocketConnexion(BluetoothDevice device) {
+    public BluetoothDeviceSocketConnection(BluetoothDevice device) {
         this.device = device;
     }
     

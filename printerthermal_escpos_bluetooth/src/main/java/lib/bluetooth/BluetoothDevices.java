@@ -19,7 +19,7 @@ public class BluetoothDevices {
      * Get a list of bluetooth devices available.
      * @return Return an array of BluetoothDeviceSocketConnexion instance
      */
-    public BluetoothDeviceSocketConnexion[] getList() {
+    public BluetoothDeviceSocketConnection[] getList() {
         if (this.bluetoothAdapter == null) {
             return null;
         }
@@ -29,12 +29,12 @@ public class BluetoothDevices {
         }
         
         Set<BluetoothDevice> bluetoothDevicesList = this.bluetoothAdapter.getBondedDevices();
-        BluetoothDeviceSocketConnexion[] bluetoothDevices = new BluetoothDeviceSocketConnexion[bluetoothDevicesList.size()];
+        BluetoothDeviceSocketConnection[] bluetoothDevices = new BluetoothDeviceSocketConnection[bluetoothDevicesList.size()];
     
         if (bluetoothDevicesList.size() > 0) {
             int i = 0;
             for (BluetoothDevice device : bluetoothDevicesList) {
-                bluetoothDevices[i++] = new BluetoothDeviceSocketConnexion(device);
+                bluetoothDevices[i++] = new BluetoothDeviceSocketConnection(device);
             }
         }
         

@@ -2,7 +2,7 @@ package com.dantsu.printerthermal_escpos_bluetooth;
 
 import android.graphics.Bitmap;
 
-import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParser;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserBarcode;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserColumn;
@@ -22,7 +22,7 @@ public class Printer {
     private int charSizeWidthPx;
     
     
-    private BluetoothPrinterSocketConnexion bluetoothPrinter = null;
+    private BluetoothPrinterSocketConnection bluetoothPrinter = null;
     
     
     /**
@@ -33,7 +33,7 @@ public class Printer {
      * @param printingWidthMM Printing width in millimeters
      * @param nbrCharactersPerLine The maximum number of characters that can be printed on a line.
      */
-    public Printer(BluetoothPrinterSocketConnexion printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine) {
+    public Printer(BluetoothPrinterSocketConnection printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine) {
         if (printer != null && (printer.isConnected() || (!printer.isConnected() && printer.connect()))) {
             this.bluetoothPrinter = printer;
         }
@@ -191,6 +191,6 @@ public class Printer {
             bitmap = Bitmap.createScaledBitmap(bitmap, bitmapWidth, bitmapHeight, false);
         }
         
-        return BluetoothPrinterSocketConnexion.bitmapToBytes(bitmap);
+        return BluetoothPrinterSocketConnection.bitmapToBytes(bitmap);
     }
 }
