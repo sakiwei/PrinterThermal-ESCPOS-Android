@@ -1,9 +1,9 @@
-[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android)
+[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Android library for Printer Thermal ESC/POS Command
 
-Usefull library to help Android developers to print with bluetooth thermal printers ESC/POS.
+Useful library to help Android developers to print with bluetooth thermal printers ESC/POS.
 
 
 ## Table of contents
@@ -30,11 +30,12 @@ Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
 2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
+3. [MUNBYN IMP001](https://www.munbyn.com/collections/portable-receipt-printer/products/58mm-bluetooth-thermal-printer-imp001).
 
 
 ## Installation
 
-**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.0.1) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
+**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.0) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
 
 ```
 allprojects {
@@ -50,7 +51,7 @@ allprojects {
 ```
 dependencies {
     ...
-    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.0.1'
+    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.1.0'
 }
 ```
 
@@ -205,22 +206,22 @@ Prints a UPC-E barcode with a height of 25 millimeters.
 
 #### **Static** Method : `selectFirstPairedBluetoothPrinter()`
 Easy way to get the first bluetooth printer paired / connected.
-- **return** `BluetoothPrinterSocketConnexion`
+- **return** `BluetoothPrinterSocketConnection`
 
 #### Method : `getList()`
 Get a list of bluetooth printers.
-- **return** `BluetoothPrinterSocketConnexion[]`
+- **return** `BluetoothPrinterSocketConnection[]`
 
 ### Class : `com.dantsu.printerthermal_escpos_bluetooth.Printer`
 
-#### Constructor : `Printer(BluetoothPrinterSocketConnexion printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine)`
-- **param** `BluetoothPrinterSocketConnexion printer` : Instance of a connected bluetooth printer
+#### Constructor : `Printer(BluetoothPrinterSocketConnection printer, int printerDpi, float printingWidthMM, int nbrCharactersPerLine)`
+- **param** `BluetoothPrinterSocketConnection printer` : Instance of a connected bluetooth printer
 - **param** `int printerDpi` : DPI of the connected printer
 - **param** `float printingWidthMM` : Printing width in millimeters
 - **param** `int nbrCharactersPerLine` : The maximum number of medium sized characters that can be printed on a line.
 
 #### Method : `disconnectPrinter()`
-Close the Bluetooth connexion with the printer.
+Close the Bluetooth connection with the printer.
 - **return** `Printer` : Fluent interface
 
 #### Method : `getNbrCharactersPerLine()`
