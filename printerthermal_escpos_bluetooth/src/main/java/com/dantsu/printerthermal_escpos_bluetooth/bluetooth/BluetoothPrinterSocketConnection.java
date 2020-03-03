@@ -6,10 +6,10 @@ import android.graphics.Bitmap;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import lib.bluetooth.BluetoothDeviceSocketConnexion;
+import lib.bluetooth.BluetoothDeviceSocketConnection;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
 
-public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnexion {
+public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConnection {
     
     /**
      * Convert Bitmap instance to a byte array compatible with ESC/POS printer.
@@ -64,7 +64,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      *
      * @param device an instance of android.bluetooth.BluetoothDevice
      */
-    public BluetoothPrinterSocketConnexion(BluetoothDevice device) {
+    public BluetoothPrinterSocketConnection(BluetoothDevice device) {
         super(device);
     }
     
@@ -118,7 +118,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      *
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion flush() {
+    public BluetoothPrinterSocketConnection flush() {
         if (this.isOpenedStream()) {
             try {
                 this.outputStream.flush();
@@ -136,7 +136,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param align Set the alignment of text and barcodes. Use PrinterCommands.TEXT_ALIGN_... constants
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion setAlign(byte[] align) {
+    public BluetoothPrinterSocketConnection setAlign(byte[] align) {
         if (!this.isOpenedStream()) {
             return this;
         }
@@ -154,7 +154,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param text Text to be printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text) {
+    public BluetoothPrinterSocketConnection printText(String text) {
         return this.printText(text, 0);
     }
     
@@ -165,7 +165,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param maxlength Number of bytes printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, int maxlength) {
+    public BluetoothPrinterSocketConnection printText(String text, int maxlength) {
         return this.printText(text, null, null, null, maxlength);
     }
     
@@ -176,7 +176,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param textSize Set the text size. Use PrinterCommands.TEXT_SIZE_... constants
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize) {
         return this.printText(text, textSize, 0);
     }
     
@@ -188,7 +188,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param maxlength Number of bytes printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize, int maxlength) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize, int maxlength) {
         return this.printText(text, textSize, null, null, maxlength);
     }
     
@@ -200,7 +200,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param textBold Set the text weight. Use PrinterCommands.TEXT_WEIGHT_... constants
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize, byte[] textBold) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize, byte[] textBold) {
         return this.printText(text, textSize, textBold, 0);
     }
     
@@ -213,7 +213,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param maxlength Number of bytes printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize, byte[] textBold, int maxlength) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize, byte[] textBold, int maxlength) {
         return this.printText(text, textSize, textBold, null, maxlength);
     }
     
@@ -226,7 +226,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param textUnderline Set the underlining of the text. Use PrinterCommands.TEXT_UNDERLINE_... constants
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize, byte[] textBold, byte[] textUnderline) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize, byte[] textBold, byte[] textUnderline) {
         return this.printText(text, textSize, textBold, textUnderline, 0);
     }
     
@@ -240,7 +240,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param maxlength Number of bytes printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printText(String text, byte[] textSize, byte[] textBold, byte[] textUnderline, int maxlength) {
+    public BluetoothPrinterSocketConnection printText(String text, byte[] textSize, byte[] textBold, byte[] textUnderline, int maxlength) {
         if (!this.isOpenedStream()) {
             return this;
         }
@@ -281,8 +281,8 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param bitmap Instance of Bitmap to be printed
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printImage(Bitmap bitmap) {
-        return this.printImage(BluetoothPrinterSocketConnexion.bitmapToBytes(bitmap));
+    public BluetoothPrinterSocketConnection printImage(Bitmap bitmap) {
+        return this.printImage(BluetoothPrinterSocketConnection.bitmapToBytes(bitmap));
     }
     
     /**
@@ -291,7 +291,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param image Bytes contain the image in ESC/POS command
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printImage(byte[] image) {
+    public BluetoothPrinterSocketConnection printImage(byte[] image) {
         if (!this.isOpenedStream()) {
             return this;
         }
@@ -314,7 +314,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param heightPx dot height of the barcode
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion printBarcode(int barcodeType, String barcode, int heightPx) {
+    public BluetoothPrinterSocketConnection printBarcode(int barcodeType, String barcode, int heightPx) {
         if (!this.isOpenedStream()) {
             return this;
         }
@@ -400,7 +400,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      *
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion newLine() {
+    public BluetoothPrinterSocketConnection newLine() {
         return this.newLine(null);
     }
     
@@ -409,7 +409,7 @@ public class BluetoothPrinterSocketConnexion extends BluetoothDeviceSocketConnex
      * @param align Set the alignment of text and barcodes. Use PrinterCommands.TEXT_ALIGN_... constants
      * @return Fluent interface
      */
-    public BluetoothPrinterSocketConnexion newLine(byte[] align) {
+    public BluetoothPrinterSocketConnection newLine(byte[] align) {
         if (!this.isOpenedStream()) {
             return this;
         }

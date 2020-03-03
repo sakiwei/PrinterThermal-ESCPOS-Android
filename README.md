@@ -3,7 +3,7 @@
 
 # Android library for Printer Thermal ESC/POS Command
 
-Usefull library to help Android developers to print with bluetooth thermal printers ESC/POS.
+Useful library to help Android developers to print with bluetooth thermal printers ESC/POS.
 
 
 ## Table of contents
@@ -30,7 +30,7 @@ Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 1. [HOIN Bluetooth Thermal Printer ESC / POS](https://www.gearbest.com/printers/pp_662658.html).
 2. [XPRINTER XP-P300](https://xprinter.vn/xprinter-xp-p300-may-in-hoa-don-di-dong-bluetooth/).
-
+3. [MUNBYN IMP001](https://www.munbyn.com/collections/portable-receipt-printer/products/58mm-bluetooth-thermal-printer-imp001).
 
 ## Installation
 
