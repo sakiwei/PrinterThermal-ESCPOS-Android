@@ -29,14 +29,19 @@ public class PrinterTextParserQRCode implements PrinterTextParserElement {
         }
 
         this.qrCodeType = PrinterCommands.QRCODE_2;
-        switch (qrCodeAttributes.get(PrinterTextParser.ATTR_QRCODE_TYPE)) {
-            case PrinterTextParser.ATTR_QRCODE_TYPE_1:
-                this.qrCodeType = PrinterCommands.QRCODE_1;
-                break;
+        try {
+            if (qrCodeAttributes.containsKey(PrinterTextParser.ATTR_QRCODE_TYPE)) {
+                switch (qrCodeAttributes.get(PrinterTextParser.ATTR_QRCODE_TYPE)) {
+                    case PrinterTextParser.ATTR_QRCODE_TYPE_1:
+                        this.qrCodeType = PrinterCommands.QRCODE_1;
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         this.length = printer.getNbrCharactersPerLine();
-
 
         this.pixelSize = printer.mmToPx(10f);
         try {

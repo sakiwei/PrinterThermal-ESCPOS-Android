@@ -29,21 +29,26 @@ public class PrinterTextParserBarcode implements PrinterTextParserElement {
         }
         
         this.barcodeType = PrinterCommands.BARCODE_EAN13;
-        switch (barcodeAttributes.get(PrinterTextParser.ATTR_BARCODE_TYPE)) {
-            case PrinterTextParser.ATTR_BARCODE_TYPE_EAN8:
-                this.barcodeType = PrinterCommands.BARCODE_EAN8;
-                break;
-            case PrinterTextParser.ATTR_BARCODE_TYPE_UPCA:
-                this.barcodeType = PrinterCommands.BARCODE_UPCA;
-                break;
-            case PrinterTextParser.ATTR_BARCODE_TYPE_UPCE:
-                this.barcodeType = PrinterCommands.BARCODE_UPCE;
-                break;
+        try {
+            if (barcodeAttributes.containsKey(PrinterTextParser.ATTR_BARCODE_TYPE)) {
+                switch (barcodeAttributes.get(PrinterTextParser.ATTR_BARCODE_TYPE)) {
+                    case PrinterTextParser.ATTR_BARCODE_TYPE_EAN8:
+                        this.barcodeType = PrinterCommands.BARCODE_EAN8;
+                        break;
+                    case PrinterTextParser.ATTR_BARCODE_TYPE_UPCA:
+                        this.barcodeType = PrinterCommands.BARCODE_UPCA;
+                        break;
+                    case PrinterTextParser.ATTR_BARCODE_TYPE_UPCE:
+                        this.barcodeType = PrinterCommands.BARCODE_UPCE;
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
+
         this.length = printer.getNbrCharactersPerLine();
-        
-        
+
         this.height = printer.mmToPx(10f);
         try {
             if (barcodeAttributes.containsKey(PrinterTextParser.ATTR_BARCODE_HEIGHT)) {
