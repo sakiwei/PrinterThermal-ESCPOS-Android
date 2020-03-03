@@ -17,7 +17,7 @@ public class BluetoothDevices {
     
     /**
      * Get a list of bluetooth devices available.
-     * @return Return an array of BluetoothDeviceSocketConnexion instance
+     * @return Return an array of BluetoothDeviceSocketConnection instance
      */
     public BluetoothDeviceSocketConnection[] getList() {
         if (this.bluetoothAdapter == null) {

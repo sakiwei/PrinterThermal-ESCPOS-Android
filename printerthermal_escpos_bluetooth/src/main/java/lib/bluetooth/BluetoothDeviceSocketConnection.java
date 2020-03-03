@@ -11,7 +11,7 @@ public class BluetoothDeviceSocketConnection {
     protected BluetoothSocket bluetoothSocket = null;
     
     /**
-     * Create un instance of BluetoothDeviceSocketConnexion.
+     * Create un instance of BluetoothDeviceSocketConnection.
      *
      * @param device an instance of android.bluetooth.BluetoothDevice
      */
@@ -38,7 +38,7 @@ public class BluetoothDeviceSocketConnection {
     }
     
     /**
-     * Start socket connexion with the bluetooth device.
+     * Start socket connection with the bluetooth device.
      *
      * @return return true if success
      */
@@ -59,7 +59,7 @@ public class BluetoothDeviceSocketConnection {
     }
     
     /**
-     * Close the socket connexion with the bluetooth device.
+     * Close the socket connection with the bluetooth device.
      *
      * @return return true if success
      */

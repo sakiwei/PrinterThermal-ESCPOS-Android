@@ -61,7 +61,7 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
     protected OutputStream outputStream = null;
     
     /**
-     * Create new instance of BluetoothPrinterSocketConnexion.
+     * Create new instance of BluetoothPrinterSocketConnection.
      *
      * @param device an instance of android.bluetooth.BluetoothDevice
      */
@@ -74,7 +74,7 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
     }
     
     /**
-     * Start socket connexion and open stream with the bluetooth device.
+     * Start socket connection and open stream with the bluetooth device.
      *
      * @return return true if success
      */
@@ -93,7 +93,7 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
     }
     
     /**
-     * Close the socket connexion and stream with the bluetooth device.
+     * Close the socket connection and stream with the bluetooth device.
      *
      * @return return true if success
      */

@@ -68,7 +68,7 @@ public class PrinterTextParserQRCode implements PrinterTextParserElement {
     /**
      * Print barcode
      *
-     * @param printerSocket Bluetooth printer socket connexion
+     * @param printerSocket Bluetooth printer socket connection
      * @return Fluent interface
      */
     @Override

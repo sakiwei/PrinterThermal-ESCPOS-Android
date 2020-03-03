@@ -32,7 +32,7 @@ public class PrinterTextParserString implements PrinterTextParserElement {
     /**
      * Print text
      *
-     * @param printerSocket Bluetooth printer socket connexion
+     * @param printerSocket Bluetooth printer socket connection
      * @return this Fluent method
      */
     @Override

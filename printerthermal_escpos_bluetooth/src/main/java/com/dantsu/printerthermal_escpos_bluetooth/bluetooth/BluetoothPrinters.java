@@ -9,7 +9,7 @@ public class BluetoothPrinters extends BluetoothDevices {
     /**
      * Easy way to get the first bluetooth printer paired / connected.
      *
-     * @return a BluetoothPrinterSocketConnexion instance
+     * @return a BluetoothPrinterSocketConnection instance
      */
     public static BluetoothPrinterSocketConnection selectFirstPairedBluetoothPrinter() {
         BluetoothPrinters printers = new BluetoothPrinters();
@@ -29,7 +29,7 @@ public class BluetoothPrinters extends BluetoothDevices {
     /**
      * Get a list of bluetooth printers.
      *
-     * @return an array of BluetoothPrinterSocketConnexion
+     * @return an array of BluetoothPrinterSocketConnection
      */
     public BluetoothPrinterSocketConnection[] getList() {
         BluetoothDeviceSocketConnection[] bluetoothDevicesList = super.getList();

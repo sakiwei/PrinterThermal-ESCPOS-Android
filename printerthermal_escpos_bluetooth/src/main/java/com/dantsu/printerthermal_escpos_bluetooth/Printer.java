@@ -28,7 +28,7 @@ public class Printer {
     /**
      * Create a new instance of Printer.
      *
-     * @param printer Instance of the bluetooth connexion with the printer
+     * @param printer Instance of the bluetooth connection with the printer
      * @param printerDpi DPI of the connected printer
      * @param printingWidthMM Printing width in millimeters
      * @param nbrCharactersPerLine The maximum number of characters that can be printed on a line.
@@ -48,7 +48,7 @@ public class Printer {
     }
     
     /**
-     * Close the Bluetooth connexion with the printer.
+     * Close the Bluetooth connection with the printer.
      *
      * @return Fluent interface
      */
