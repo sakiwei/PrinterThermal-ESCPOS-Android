@@ -425,10 +425,10 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
                     pH = (int)Math.floor(commandLength / 256),
                     pL = commandLength % 256;
 
-            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x41, (byte)qrCodeType, 0x00});
+            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x04, 0x00, 0x31, 0x41, (byte)qrCodeType, 0x00});
             this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x43, (byte)size});
 
-            byte[] qrCodeCommand = new byte[commandLength + 5];
+            byte[] qrCodeCommand = new byte[textBytes.length + 8];
             System.arraycopy(new byte[]{0x1d, 0x28, 0x6b, (byte)pL, (byte)pH, 0x31, 0x50, 0x30}, 0, qrCodeCommand, 0, 8);
             System.arraycopy(textBytes, 0, qrCodeCommand, 8, textBytes.length);
             this.outputStream.write(qrCodeCommand);
