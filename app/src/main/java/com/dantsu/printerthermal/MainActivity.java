@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                             "[L]Tel : +33801201456\n" +
                             "[L]\n" +
                             "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
-                            "[C]<qrcode type='1' size='3'>http://www.developpeur-web.dantsu.com/</qrcode>"
+                            "[C]<qrcode size='3'>http://www.developpeur-web.dantsu.com/</qrcode>"
                     )
                     .disconnectPrinter();
         }

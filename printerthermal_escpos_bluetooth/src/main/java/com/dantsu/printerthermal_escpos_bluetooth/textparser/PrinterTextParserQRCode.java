@@ -2,7 +2,7 @@ package com.dantsu.printerthermal_escpos_bluetooth.textparser;
 
 import com.dantsu.printerthermal_escpos_bluetooth.Printer;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
-import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 
 import java.util.Hashtable;
 
@@ -67,7 +67,7 @@ public class PrinterTextParserQRCode implements PrinterTextParserElement {
      * @return Fluent interface
      */
     @Override
-    public PrinterTextParserQRCode print(BluetoothPrinterSocketConnexion printerSocket) {
+    public PrinterTextParserQRCode print(BluetoothPrinterSocketConnection printerSocket) {
         printerSocket
                 .setAlign(this.align)
                 .printQRCode(this.qrCodeType, this.data, this.pixelSize);

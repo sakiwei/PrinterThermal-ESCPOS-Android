@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 import com.dantsu.printerthermal_escpos_bluetooth.Printer;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
-import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 
 public class PrinterTextParserBarcode implements PrinterTextParserElement {
     
@@ -73,7 +73,7 @@ public class PrinterTextParserBarcode implements PrinterTextParserElement {
      * @return this Fluent method
      */
     @Override
-    public PrinterTextParserBarcode print(BluetoothPrinterSocketConnexion printerSocket) {
+    public PrinterTextParserBarcode print(BluetoothPrinterSocketConnection printerSocket) {
         printerSocket
                 .setAlign(this.align)
                 .printBarcode(this.barcodeType, this.code, this.height);

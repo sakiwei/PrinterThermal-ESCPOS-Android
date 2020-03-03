@@ -1,8 +1,8 @@
 package com.dantsu.printerthermal_escpos_bluetooth.textparser;
 
-import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 
 public interface PrinterTextParserElement {
-    public int length();
-    public PrinterTextParserElement print(BluetoothPrinterSocketConnexion printerSocket);
+    int length();
+    PrinterTextParserElement print(BluetoothPrinterSocketConnection printerSocket);
 }

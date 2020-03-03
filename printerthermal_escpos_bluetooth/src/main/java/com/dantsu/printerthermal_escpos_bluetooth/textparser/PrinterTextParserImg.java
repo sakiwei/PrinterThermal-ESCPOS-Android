@@ -5,8 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
 import com.dantsu.printerthermal_escpos_bluetooth.Printer;
-import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
-import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnexion;
+import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 
 
 public class PrinterTextParserImg implements PrinterTextParserElement {
@@ -159,7 +158,7 @@ public class PrinterTextParserImg implements PrinterTextParserElement {
      * @return this Fluent method
      */
     @Override
-    public PrinterTextParserImg print(BluetoothPrinterSocketConnexion printerSocket) {
+    public PrinterTextParserImg print(BluetoothPrinterSocketConnection printerSocket) {
         printerSocket.printImage(this.image);
         return this;
     }
