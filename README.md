@@ -103,13 +103,12 @@ printer
         "[L]\n" +
         "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
         "[C]<qrcode size='20'>http://www.developpeur-web.dantsu.com/</qrcode>"
-    )
-    .disconnectPrinter();
+    );
 ```
 
 Below a picture of the receipt printed with the code above :
 
-![Example of a printed receipt](http://www.developpeur-web.dantsu.com/files/librairie/receipt-thermal-printer.png)
+![Example of a printed receipt](http://www.developpeur-web.dantsu.com/files/librairie/receipt-thermal-printer.png?1)
 
 
 ## Formatted text : syntax guide
