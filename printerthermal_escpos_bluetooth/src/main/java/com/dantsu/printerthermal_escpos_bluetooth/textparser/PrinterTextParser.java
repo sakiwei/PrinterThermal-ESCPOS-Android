@@ -36,9 +36,6 @@ public class PrinterTextParser {
     public static final String ATTR_FORMAT_TEXT_SIZE_MEDIUM = "medium";
 
     public static final String ATTR_QRCODE_SIZE = "size";
-    public static final String ATTR_QRCODE_TYPE = "type";
-    public static final String ATTR_QRCODE_TYPE_1 = "1";
-    public static final String ATTR_QRCODE_TYPE_2 = "2";
     
     private static String regexAlignTags;
     public static String getRegexAlignTags() {

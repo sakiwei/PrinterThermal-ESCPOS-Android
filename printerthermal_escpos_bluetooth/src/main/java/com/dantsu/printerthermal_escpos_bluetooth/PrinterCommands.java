@@ -9,7 +9,6 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.util.EnumMap;
-import java.util.Map;
 
 public class PrinterCommands {
     public static final int TIME_BETWEEN_TWO_PRINT = 150;
