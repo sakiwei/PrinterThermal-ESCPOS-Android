@@ -98,16 +98,25 @@ public class PrinterTextParserImg implements PrinterTextParserElement {
      * @param hexadecimalString Hexadecimal string of the image data.
      */
     public PrinterTextParserImg(PrinterTextParserColumn printerTextParserColumn, String textAlign, String hexadecimalString) {
+        this(printerTextParserColumn, textAlign, PrinterTextParserImg.hexadecimalStringToBytes(hexadecimalString));
+    }
+
+    /**
+     * Create new instance of PrinterTextParserImg.
+     *
+     * @param printerTextParserColumn Parent PrinterTextParserColumn instance.
+     * @param textAlign Set the image alignment. Use PrinterTextParser.TAGS_ALIGN_... constants.
+     * @param image Bytes contain the image in ESC/POS command.
+     */
+    public PrinterTextParserImg(PrinterTextParserColumn printerTextParserColumn, String textAlign, byte[] image) {
         Printer printer = printerTextParserColumn.getLine().getTextParser().getPrinter();
-        
-        byte[] image = PrinterTextParserImg.hexadecimalStringToBytes(hexadecimalString);
-        
+
         int byteWidth = ((int) image[4] & 0xFF),
-            width = byteWidth * 8,
-            height = ((int) image[6] & 0xFF),
-            nbrByteDiff = (int) Math.floor(((float) (printer.getPrintingWidthPx() - width)) / 8f),
-            nbrWhiteByteToInsert = 0;
-        
+                width = byteWidth * 8,
+                height = ((int) image[6] & 0xFF),
+                nbrByteDiff = (int) Math.floor(((float) (printer.getPrintingWidthPx() - width)) / 8f),
+                nbrWhiteByteToInsert = 0;
+
         switch (textAlign) {
             case PrinterTextParser.TAGS_ALIGN_CENTER:
                 nbrWhiteByteToInsert = Math.round(((float) nbrByteDiff) / 2f);
@@ -116,7 +125,7 @@ public class PrinterTextParserImg implements PrinterTextParserElement {
                 nbrWhiteByteToInsert = nbrByteDiff;
                 break;
         }
-        
+
         if (nbrWhiteByteToInsert > 0) {
             int newByteWidth = byteWidth + nbrWhiteByteToInsert;
             byte[] newImage = new byte[newByteWidth * height + 8];
@@ -127,20 +136,11 @@ public class PrinterTextParserImg implements PrinterTextParserElement {
             }
             image = newImage;
         }
-        
+
         this.length = (int) Math.ceil(((float) (((int) image[4] & 0xFF) * 8)) / ((float) printer.getCharSizeWidthPx()));
         this.image = image;
     }
-    
-    /**
-     * Get bytes that contain the image in ESC/POS command.
-     *
-     * @return Bytes contain the image in ESC/POS command
-     */
-    public byte[] getImage() {
-        return this.image;
-    }
-    
+
     /**
      * Get the image width in char length.
      *

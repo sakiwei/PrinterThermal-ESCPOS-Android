@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.0)
+[![](https://jitpack.io/v/DantSu/PrinterThermal-ESCPOS-Android.svg)](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.1)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Android library for Printer Thermal ESC/POS Command
@@ -35,7 +35,7 @@ Developed for SDK version 16 (Android 4.1 Jelly Bean) and above.
 
 ## Installation
 
-**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.0) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
+**Step 1.** Add the [JitPack](https://jitpack.io/#DantSu/PrinterThermal-ESCPOS-Android/1.1.1) repository to your build file. Add it in your root `/build.gradle` at the end of repositories:
 
 ```
 allprojects {
@@ -51,7 +51,7 @@ allprojects {
 ```
 dependencies {
     ...
-    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.1.0'
+    implementation 'com.github.DantSu:PrinterThermal-ESCPOS-Android:1.1.1'
 }
 ```
 
@@ -101,7 +101,8 @@ printer
         "[L]31547 PERPETES\n" +
         "[L]Tel : +33801201456\n" +
         "[L]\n" +
-        "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n"
+        "[C]<barcode type='ean13' height='10'>831254784551</barcode>\n" +
+        "[C]<qrcode size='20'>http://www.developpeur-web.dantsu.com/</qrcode>"
     )
     .disconnectPrinter();
 ```
@@ -199,6 +200,22 @@ Prints a UPC-E barcode with a height of 25 millimeters.
 - `<barcode>` must be directly preceded by nothing or an alignment tag (`[L][C][R]`).
 - `</barcode>` must be directly followed by a new line `\n`.
 - You can't write text on a line that contains `<barcode></barcode>`.
+
+### QR Code
+
+`<qrcode></qrcode>` tag allows you to print a QR code. Inside the tag you need to write the QR code data.
+
+- `<qrcode>http://www.developpeur-web.dantsu.com/</qrcode>` :
+Prints a QR code with a width and height of 20 millimeters.
+- `<qrcode size='25'>123456789</qrcode>` :
+Prints a QR code with a width and height of 25 millimeters.
+
+**/!\\ WARNING /!\\** : This tag has several constraints :
+
+- A line that contains `<qrcode></qrcode>` can have only one alignment tag and it must be at the beginning of the line.
+- `<qrcode>` must be directly preceded by nothing or an alignment tag (`[L][C][R]`).
+- `</qrcode>` must be directly followed by a new line `\n`.
+- You can't write text on a line that contains `<qrcode></qrcode>`.
 
 ## Class list
 

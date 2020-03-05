@@ -4,12 +4,9 @@ import android.graphics.Bitmap;
 
 import com.dantsu.printerthermal_escpos_bluetooth.bluetooth.BluetoothPrinterSocketConnection;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParser;
-import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserBarcode;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserColumn;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserElement;
-import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserImg;
 import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserLine;
-import com.dantsu.printerthermal_escpos_bluetooth.textparser.PrinterTextParserString;
 
 public class Printer {
     
@@ -180,6 +177,6 @@ public class Printer {
             bitmap = Bitmap.createScaledBitmap(bitmap, bitmapWidth, bitmapHeight, false);
         }
         
-        return BluetoothPrinterSocketConnection.bitmapToBytes(bitmap);
+        return PrinterCommands.bitmapToBytes(bitmap);
     }
 }

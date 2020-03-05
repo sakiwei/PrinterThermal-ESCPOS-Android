@@ -1,8 +1,6 @@
 package com.dantsu.printerthermal_escpos_bluetooth.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
-import android.graphics.Bitmap;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -11,52 +9,6 @@ import lib.bluetooth.BluetoothDeviceSocketConnection;
 import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
 
 public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConnection {
-    
-    /**
-     * Convert Bitmap instance to a byte array compatible with ESC/POS printer.
-     *
-     * @param bitmap Bitmap to be convert
-     * @return Bytes contain the image in ESC/POS command
-     */
-    public static byte[] bitmapToBytes(Bitmap bitmap) {
-        int bitmapWidth = bitmap.getWidth(),
-            bitmapHeight = bitmap.getHeight();
-
-        int bytesByLine = (int) Math.ceil(((float) bitmapWidth) / 8f);
-        
-        byte[] imageBytes = new byte[8 + bytesByLine * bitmapHeight];
-        System.arraycopy(new byte[]{0x1D, 0x76, 0x30, 0x00, (byte) bytesByLine, 0x00, (byte) bitmapHeight, 0x00}, 0, imageBytes, 0, 8);
-        
-        int i = 8;
-        for (int posY = 0; posY < bitmapHeight; posY++) {
-            for (int j = 0; j < bitmapWidth; j += 8) {
-                StringBuilder stringBinary = new StringBuilder();
-                for (int k = 0; k < 8; k++) {
-                    int posX = j + k;
-                    if (posX < bitmapWidth) {
-                        int color = bitmap.getPixel(posX, posY),
-                            r = (color >> 16) & 0xff,
-                            g = (color >> 8) & 0xff,
-                            b = color & 0xff;
-                        
-                        if (r > 160 && g > 160 && b > 160) {
-                            stringBinary.append("0");
-                        } else {
-                            stringBinary.append("1");
-                        }
-                    } else {
-                        stringBinary.append("0");
-                    }
-                }
-                imageBytes[i++] = (byte) Integer.parseInt(stringBinary.toString(), 2);
-            }
-        }
-        
-        return imageBytes;
-    }
-    
-    
-    
     
     protected OutputStream outputStream = null;
     
@@ -279,16 +231,6 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
     /**
      * Print image with the connected printer.
      *
-     * @param bitmap Instance of Bitmap to be printed
-     * @return Fluent interface
-     */
-    public BluetoothPrinterSocketConnection printImage(Bitmap bitmap) {
-        return this.printImage(BluetoothPrinterSocketConnection.bitmapToBytes(bitmap));
-    }
-    
-    /**
-     * Print image with the connected printer.
-     *
      * @param image Bytes contain the image in ESC/POS command
      * @return Fluent interface
      */
@@ -378,14 +320,14 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
     
         barcodeLength = barcode.length();
         byte[] barcodeCommand = new byte[barcodeLength + 4];
-        System.arraycopy(new byte[]{0x1d, 0x6b, (byte) barcodeType}, 0, barcodeCommand, 0, 3);
+        System.arraycopy(new byte[]{0x1D, 0x6B, (byte) barcodeType}, 0, barcodeCommand, 0, 3);
         
         try {
             for (int i = 0; i < barcodeLength; i++) {
                 barcodeCommand[i + 3] = (byte) (Integer.parseInt(barcode.substring(i, i + 1), 10) + 48);
             }
             
-            this.outputStream.write(new byte[]{0x1d, 0x68, (byte) heightPx});
+            this.outputStream.write(new byte[]{0x1D, 0x68, (byte) heightPx});
             this.outputStream.write(barcodeCommand);
             Thread.sleep(PrinterCommands.TIME_BETWEEN_TWO_PRINT * 2);
         } catch (IOException e) {
@@ -419,21 +361,31 @@ public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConne
 
 
         try {
+
+            this.outputStream.write(PrinterCommands.WESTERN_EUROPE_ENCODING);
+
             byte[] textBytes = text.getBytes("ISO-8859-1");
+
             int
                     commandLength = textBytes.length + 3,
-                    pH = (int)Math.floor(commandLength / 256),
-                    pL = commandLength % 256;
+                    pL = commandLength % 256,
+                    pH = (int)Math.floor(commandLength / 256);
 
-            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x04, 0x00, 0x31, 0x41, (byte)qrCodeType, 0x00});
-            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x43, (byte)size});
+            /*byte[] qrCodeCommand = new byte[textBytes.length + 7];
+            System.arraycopy(new byte[]{0x1B, 0x5A, 0x00, 0x00, (byte)size, (byte)pL, (byte)pH}, 0, qrCodeCommand, 0, 7);
+            System.arraycopy(textBytes, 0, qrCodeCommand, 7, textBytes.length);
+            this.outputStream.write(qrCodeCommand);*/
+
+            this.outputStream.write(new byte[]{0x1D, 0x28, 0x6B, 0x04, 0x00, 0x31, 0x41, (byte)qrCodeType, 0x00});
+            this.outputStream.write(new byte[]{0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x43, (byte)size});
+            this.outputStream.write(new byte[]{0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x45, (byte)48});
 
             byte[] qrCodeCommand = new byte[textBytes.length + 8];
-            System.arraycopy(new byte[]{0x1d, 0x28, 0x6b, (byte)pL, (byte)pH, 0x31, 0x50, 0x30}, 0, qrCodeCommand, 0, 8);
+            System.arraycopy(new byte[]{0x1D, 0x28, 0x6B, (byte)pL, (byte)pH, 0x31, 0x50, 0x30}, 0, qrCodeCommand, 0, 8);
             System.arraycopy(textBytes, 0, qrCodeCommand, 8, textBytes.length);
             this.outputStream.write(qrCodeCommand);
 
-            this.outputStream.write(new byte[]{0x1d, 0x28, 0x6b, 0x03, 0x00, 0x31, 0x51, 0x30});
+            this.outputStream.write(new byte[]{0x1D, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x51, 0x30});
 
             Thread.sleep(PrinterCommands.TIME_BETWEEN_TWO_PRINT * 2);
         } catch (IOException e) {
