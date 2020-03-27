@@ -2,16 +2,21 @@ package com.dantsu.printerthermal_escpos_bluetooth.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 
+import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
+
 import java.io.IOException;
 import java.io.OutputStream;
 
 import lib.bluetooth.BluetoothDeviceSocketConnection;
-import com.dantsu.printerthermal_escpos_bluetooth.PrinterCommands;
 
 public class BluetoothPrinterSocketConnection extends BluetoothDeviceSocketConnection {
     
     protected OutputStream outputStream = null;
-    
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
     /**
      * Create new instance of BluetoothPrinterSocketConnection.
      *
